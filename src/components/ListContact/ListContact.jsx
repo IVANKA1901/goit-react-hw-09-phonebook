@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContactOperation } from '../../redux/contacts/operations';
+import { deleteContactThunk } from '../../redux/contacts/operations';
+import { Contact, Item, List } from './ListContact.styled';
+import { Btn } from './ListContact.styled';
 
 const ContactList = () => {
   const { contacts, filter } = useSelector(state => state.contacts);
   const dispatch = useDispatch();
 
   const deleteContact = contactId => {
-    dispatch(deleteContactOperation(contactId));
+    dispatch(deleteContactThunk(contactId));
   };
 
   const filteredContacts = contacts.filter(el =>
@@ -14,17 +16,17 @@ const ContactList = () => {
   );
   return (
     <>
-      <ul>
+      <List>
         {filteredContacts.map(contact => (
-          <li key={contact.id}>
-            <p>{contact.name}: </p> <p>{contact.number}</p>
-            <button
-              type="button"
-              onClick={e => deleteContact(contact.id)}
-            ></button>
-          </li>
+          <Item key={contact.id}>
+            <Contact>{contact.name}: </Contact>{' '}
+            <Contact>{contact.number}</Contact>
+            <Btn type="button" onClick={e => deleteContact(contact.id)}>
+              Delete
+            </Btn>
+          </Item>
         ))}
-      </ul>
+      </List>
     </>
   );
 };

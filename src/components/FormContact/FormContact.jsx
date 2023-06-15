@@ -7,6 +7,7 @@ import {
 } from '../../redux/contacts/operations';
 import { Btn, FormStyles, Input, NameInput } from './FormContact.styled';
 import Filter from '../Filter/Filter';
+import ContactList from 'components/ListContact/ListContact';
 
 export const FormContact = () => {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ export const FormContact = () => {
   return (
     <>
       <Filter />
+      <ContactList />
       <FormStyles onSubmit={handleSubmit}>
         <div>
           <label>
